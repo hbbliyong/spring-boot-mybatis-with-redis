@@ -2,6 +2,10 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+        <setting name="logPrefix" value="dao."/>
+    </settings>
 <typeAliases>
     <package name="cn.rivamed.springbootmybatiswithredis.dao.domain"/>
 </typeAliases>

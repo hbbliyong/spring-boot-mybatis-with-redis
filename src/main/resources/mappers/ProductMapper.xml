@@ -5,7 +5,7 @@
 <mapper namespace="cn.rivamed.springbootmybatiswithredis.dao.mapper.ProductMapper">
 
     <!-- 开启基于redis的二级缓存 -->
-    <cache type="cn.rivamed.springbootmybatiswithredis.util.RedisCache"/>
+    <!--<cache type="cn.rivamed.springbootmybatiswithredis.util.RedisCache"/>-->
 
     <select id="select" resultType="Product">
         SELECT * FROM products WHERE id=#{id} LIMIT 1

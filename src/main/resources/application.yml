@@ -1,7 +1,7 @@
 spring:
   #数据库配置
   datasource:
-      url: jdbc:mysql://localhost:3306/mybatis
+      url: jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf8&useSSL=true
       username: root
       password: root
       driver-class-name: com.mysql.jdbc.Driver
@@ -26,6 +26,10 @@ spring:
       min-idle: 0
        # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
       max-wait: -1
+#日志，输出sql语句
+logging:
+  level:
+    cn.rivamed.springbootmybatiswithredis.dao.mapper: TRACE
 
 #mybatis配置
 mybatis:
@@ -37,7 +41,6 @@ mybatis:
   # 配置mapper xml文件所在路径，这里是一个数组
   mapper-locations:
     - mappers/ProductMapper.xml
-
 
 ---
 
