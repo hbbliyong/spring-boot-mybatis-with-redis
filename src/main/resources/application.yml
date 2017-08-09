@@ -39,9 +39,12 @@ mybatis:
   # 配置映射类所在包名
   type-aliases-package: cn.rivamed.springbootmybatiswithredis.dao.domain
   # 配置mapper xml文件所在路径，这里是一个数组
-  mapper-locations:
-    - mappers/ProductMapper.xml
-
+  mapper-locations: classpath:mappers/*.xml
+   # - mappers/ProductMapper.xml
+   # - mappers/CityMapper.xml
+  #或者使用这种
+  configuration:
+    map-underscore-to-camel-case: true
 ---
 
 spring:

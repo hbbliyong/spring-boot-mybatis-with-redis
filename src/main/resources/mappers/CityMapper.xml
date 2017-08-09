@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.rivamed.springbootmybatiswithredis.dao.mapper.CityMapper">
+    <!-- 开启基于redis的二级缓存 -->
+    <cache type="cn.rivamed.springbootmybatiswithredis.util.RedisCache"/>
+
+    <resultMap id="BaseResultMap" type="cn.rivamed.springbootmybatiswithredis.dao.domain.City">
+        <result column="id" property="id"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_name" property="cityName"/>
+        <result column="description" property="description"/>
+    </resultMap>
+    <parameterMap id="City" type="cn.rivamed.springbootmybatiswithredis.dao.domain.City"/>
+    <sql id="Base_Column_List">
+    id,province_id,city_name,description
+</sql>
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from city
+    </select>
+    <insert id="saveCity" parameterType="City" useGeneratedKeys="true" keyProperty="id">
+    insert INTO
+    city(id,province_id,city_name,description)
+    VALUES (#{id},#{provinceId},#{cityName},#{description})
+</insert>
+    <!--设置flushCache为true，这样在更新product信息时，能够自动失效缓存（本质上调用的是clear方法）。-->
+    <update id="updateCity" parameterType="City" flushCache="true">
+        UPDATE city
+        SET
+        <if test="provinceId!=null">
+            province_id=#{provinceId},
+        </if>
+        <if test="cityName!=null">
+            city_name= #{cityName},
+        </if>
+        <if test="description!=null">
+            description = #{description}
+        </if>
+        WHERE id= #{id}
+    </update>
+
+    <delete id="deleteCity" parameterType="java.lang.Long">
+        delete from city where id=#{id}
+    </delete>
+</mapper>
