@@ -3,12 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.rivamed.springbootmybatiswithredis.dao.mapper.ProductMapper">
-
+    <resultMap id="resultList" type="Product">
+    <id property="id" column="id"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+    </resultMap>
     <!-- 开启基于redis的二级缓存 -->
     <cache type="cn.rivamed.springbootmybatiswithredis.util.RedisCache"/>
 
+    <insert id="save" parameterType="Product" keyProperty="id" useGeneratedKeys="true">
+        insert into  products (name,price) values (#{name},#{price})
+    </insert>
     <select id="select" resultType="Product">
         SELECT * FROM products WHERE id=#{id} LIMIT 1
+    </select>
+    <select id="findByName" resultMap="resultList" parameterType="String">
+        select * from products where name like '%${name}%'
     </select>
 
     <!--设置flushCache为true，这样在更新product信息时，能够自动失效缓存（本质上调用的是clear方法）。-->

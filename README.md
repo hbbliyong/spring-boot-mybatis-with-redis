@@ -55,4 +55,18 @@ logging:
   a. 从商品 Cache 中获取商品详情，如果存在，则返回获取 Cache 数据返回。
   b. 如果不存在，则从商品 DB 中获取。获取成功后，将数据存到 Cache 中。则下次获取商品详情，就可以从 Cache 就可以得到商品详情数据。
   c. 从商品 DB 中更新或者删除商品详情成功后，则从缓存中删除对应商品的详情缓存
-      
+## issue
+### 1.返回List
+````
+    <!--配置一个resultMap 指定返回的类型 -->
+    <resultMap id="departMent" type="Department">
+        <id column="dp_id" property="dp_id" />
+        <result column="dp_name" property="dp_name" />
+        <result column="cost_center" property="cost_center" />
+    </resultMap>
+
+    <!-- 返回一个list的写法 ,这里是resultMap 不是resultType-->
+    <select id="queryAllDepartment"  resultMap="departMent" >
+        select * from t_department
+    </select>
+````      
