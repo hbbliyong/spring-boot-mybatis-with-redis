@@ -70,3 +70,37 @@ logging:
         select * from t_department
     </select>
 ````      
+
+## [mybatis中文文档](http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#select)
+> 不懂的都可以在这里面找到，有问题第一时间到这个里面找
+## 动态Sql(注解方式)进行数据操作
+demo：
+````
+package cn.yy.dao;
+
+@Mapper
+public interface UserDao {
+
+ @SelectProvider(type=UserDao .class,method="selectPersonLike")
+ public List<Person> selectPerson(String id,String firstName,String lastName);
+
+
+public String selectPersonLike(final String id, final String firstName, final String lastName) {
+  return new SQL() {{
+    SELECT("P.ID, P.USERNAME, P.PASSWORD, P.FIRST_NAME, P.LAST_NAME");
+    FROM("PERSON P");
+    if (id != null) {
+      WHERE("P.ID like #{id}");
+    }
+    if (firstName != null) {
+      WHERE("P.FIRST_NAME like #{firstName}");
+    }
+    if (lastName != null) {
+      WHERE("P.LAST_NAME like #{lastName}");
+    }
+    ORDER_BY("P.LAST_NAME");
+  }}.toString();
+}
+}
+````
+>[参考网址](https://my.oschina.net/u/3637243/blog/1510618)

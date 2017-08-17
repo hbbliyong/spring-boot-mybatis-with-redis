@@ -6,11 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cglib.proxy.Enhancer;
 
+
 @SpringBootApplication
 public class SpringBootMybatisWithRedisApplication {
 
     public static void main(String[] args) {
        // cglibTest();
+
         SpringApplication.run(SpringBootMybatisWithRedisApplication.class, args);
     }
 

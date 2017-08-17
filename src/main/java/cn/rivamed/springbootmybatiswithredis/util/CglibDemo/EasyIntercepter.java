@@ -9,7 +9,7 @@ public class EasyIntercepter implements MethodInterceptor {
     @Override
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         System.out.println("before");
-        Object result=methodProxy.invoke(obj,args);
+        Object result=methodProxy.invokeSuper(obj,args);
         System.out.println("after");
         return result;
     }
