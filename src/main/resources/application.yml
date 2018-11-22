@@ -5,6 +5,7 @@ spring:
       username: root
       password: root
       driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
   redis:
     #redis数据库索引（默认为0），我们使用索引为3的数据库，避免和其它数据库冲突
     database: 3

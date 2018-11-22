@@ -1,7 +1,14 @@
+# 更新记录
+
+### 2018-11--22 更新
+1. 将Redis缓存进行简单封装,新的方式可以很方便的对列表对象进行序列化,在数据存取的时候使用json格式进行转换.
+这里使用分钟作为单位来设定数据在Redis中保存的时间.     
+ > 这里为了对比,新增了一个实体类Book,之前的的缓存在User            
+2. 增加了druid为数据库连接池     
 # Java Web现代化开发：Spring Boot + Mybatis + Redis一级、二级缓存
 ## 环境
-+ 开发环境：mac 10.11
-+ ide：Intellij 2017.1
++ 开发环境：Win7
++ ide：Intellij 2017.2
 + jdk：1.8
 + Spring-Boot：1.5.3.RELEASE
 + Redis：3.2.9
