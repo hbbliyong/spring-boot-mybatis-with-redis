@@ -1,8 +1,13 @@
-## 1.使用说明
-## 2.开启Druid的监控功能
- 开启监控只需要一个监控服务器以及一个过滤器,监控服务器设定了访问监控口太的连接地址,设定了访问数据库的黑名单,白名单,以及配置
- 访问的用户名以及密码
- ```java
+package cn.rivamed.springbootmybatiswithredis.config;
+
+import com.alibaba.druid.support.http.StatViewServlet;
+import com.alibaba.druid.support.http.WebStatFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
 @Configuration
 public class DruidConfiguration {
     @Bean
@@ -28,8 +33,3 @@ public class DruidConfiguration {
         return filterRegistrationBean;
     }
 }
-
-```
-
-运行应用后,我们可以通过http://localhost/druid/index.html打开控制台.
-在监控后台,可以实时查看数据库连接池的情况,每一个被执行SQL语句的次数以及花费的时间,并发数等,以及一个URI的请求次数,时间和并发情况.这些都是我们分析数据库的情况和性能提供了可靠的,详细的数据

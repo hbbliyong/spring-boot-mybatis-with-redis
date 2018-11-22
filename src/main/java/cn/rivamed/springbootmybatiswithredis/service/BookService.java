@@ -5,4 +5,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface BookService {
      ResponseEntity<Book> addBook(final Book book);
+     Book getBookById(String id);
 }

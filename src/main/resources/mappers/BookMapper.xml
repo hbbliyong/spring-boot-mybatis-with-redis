@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.BookMapper">
+<mapper namespace="cn.rivamed.springbootmybatiswithredis.dao.mapper.BookMapper">
   <insert id="addBook" parameterType="Book">
       INSERT INTO BOOK(
     <if test="pageNum != null">
@@ -64,7 +64,7 @@
   <delete id="deleteBook" parameterType="int">
     delete from BOOK where BOOK_id=#{bookId}
   </delete>
-  <select id="getBook" parameterType="int" resultMap="bookResultMap">
+  <select id="getBook" parameterType="String" resultMap="bookResultMap">
     select * from BOOK where BOOK_ID=#{bookId}
   </select>
   <select id="getBooks" resultMap="bookResultMap">
